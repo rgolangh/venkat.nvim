@@ -29,14 +29,12 @@ end
 M.execute = function()
     local filetype = vim.bo.filetype
     if M.config.languages[filetype] == nil then
-        print("no command for file type " .. filetype)
         return
     end
     local filename = vim.api.nvim_buf_get_name(0)
     local newcmd = withFilename(filetype, filename)
 
     local popup = function(bufnr, data)
-        print("data is " .. vim.inspect(data))
         if data then
             local floatbuf = vim.api.nvim_create_buf(false, true)
             vim.api.nvim_buf_set_keymap(floatbuf, 'n', '<Esc>', ':close<CR>', {
@@ -47,13 +45,13 @@ M.execute = function()
             vim.api.nvim_buf_set_lines(floatbuf, 0, 0, false, data)
             vim.api.nvim_open_win(floatbuf, bufnr, {
                 relative = "cursor",
+                border = "rounded",
+                style = "minimal",
                 anchor = "NE",
                 height = 10,
                 width = 80,
                 col = 60,
                 row = 1,
-                border = "rounded",
-                style = "minimal"
             })
         end
     end
