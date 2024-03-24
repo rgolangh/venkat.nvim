@@ -6,7 +6,8 @@ M.config.languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
     java = { cmdline = "java %s", pattern = "Main.java" },
     rust = { cmdline = "cargo run %s", pattern = "main.rs" },
-    python = { cmdline = "python %s", pattern = "main.py" }
+    python = { cmdline = "python %s", pattern = "main.py" },
+    zig = { cmdline = "zig run %s", pattern = "main.zig" },
 }
 
 M.config.getPattern = function()
