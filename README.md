@@ -14,7 +14,7 @@ require('venkat').config.languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
     java = { cmdline = "java %s", pattern = "Main.java" },
     python = { cmdline = "python %s", pattern = "main.py" },
-    rust = { cmdline = "cargo run %s", pattern = "main.rs" },
+    rust = { cmdline = "cargo -Zscript %s", pattern = "main.rs" },
     zig = { cmdline = "zig run %s", pattern = "main.zig" },
 }
 ```
@@ -27,7 +27,7 @@ Install using packer:
 
 Expand the config in `init.lua` or `$HOME/.config/nvim/after/plugin/venkat.lua` :
 
-```
+```lua
 require('venkat').config.languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
     java = { cmdline = "java %s", pattern = "main.java" },
