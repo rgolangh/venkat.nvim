@@ -4,7 +4,7 @@ M.config = {}
 M.config.languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
     java = { cmdline = "java %s", pattern = "Main.java" },
-    rust = { cmdline = "cargo run %s", pattern = "main.rs" },
+    rust = { cmdline = "cargo -Zscript %s", pattern = "main.rs" },
     python = { cmdline = "python %s", pattern = "main.py" },
     c = { cmdline = "zig run -lc %s", pattern = "main.c" },
     zig = { cmdline = "zig run %s", pattern = "main.zig" },
