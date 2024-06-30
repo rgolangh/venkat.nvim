@@ -10,6 +10,25 @@ M.config.languages = {
     zig = { cmdline = "zig run %s", pattern = "main.zig" },
 }
 
+function M.setup(opts)
+    opts = opts or {}
+    if opts.default then
+        error "'default' is not a valid value for setyp . See 'defaults'"
+    end
+
+    if opts.languages ~= nil then
+        M.config.languages = opts.languages
+    end
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        group = vim.api.nvim_create_augroup("venkatmode", { clear = true }),
+        pattern = require("venkat").config.getPattern(),
+        callback = function()
+            require("venkat").execute()
+        end,
+    })
+end
+
 M.config.getPattern = function()
     local pattern = ""
     for _, value in pairs(M.config.languages) do
@@ -56,14 +75,14 @@ M.execute = function()
     })
 
     local popup = function(bufnum, data)
-            vim.api.nvim_buf_set_keymap(bufnum, 'n', '<Esc>', ':close<CR>', {
-                silent = true,
-                nowait = true,
-                noremap = true
+        vim.api.nvim_buf_set_keymap(bufnum, 'n', '<Esc>', ':close<CR>', {
+            silent = true,
+            nowait = true,
+            noremap = true
 
-            })
-            vim.api.nvim_buf_set_lines(bufnum, -1, -1, false, data)
-            vim.api.nvim_set_current_win(windowId)
+        })
+        vim.api.nvim_buf_set_lines(bufnum, -1, -1, false, data)
+        vim.api.nvim_set_current_win(windowId)
     end
 
 
