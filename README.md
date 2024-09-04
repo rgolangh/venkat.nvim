@@ -8,6 +8,21 @@ and by TJ with his excellent autocmd tutorial.
 By default whenever saving a main.go, main.py, main.rs, main.java, nvim will compile and run, and preview 
 the result in a floating window.
 
+## Installation
+
+using packer:
+
+```lua
+    use('rgolangh/venkat.nvim')
+```
+using Lazy:
+
+```lua
+    return {
+        { "rgolangh/venkat.nvim", lazy = false },
+    }
+```
+
 Here's the default configuration:
 
 ```lua
@@ -32,12 +47,6 @@ more handy. Consider these examples:
 ```
 
 For more info see `:help file-pattern`
-
-## Install using packer:
-
-```lua
-    use('rgolangh/venkat.nvim')
-```
 
 If you want to customize the configuration, expand the config in `init.lua` or set this `$HOME/.config/nvim/after/plugin/venkat.lua` :
 
