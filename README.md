@@ -1,5 +1,8 @@
 # venkat.nvim
-nvim plugin to execute on-save source files and prints back the result in a pop up window.
+
+![Screenshot](screenshot.png)
+
+*venkat.vim* is an nvim plugin to execute on-save source files and prints back the result in a pop up window.
 Release the window with <ESC>.
 
 This plugin is inspired by Venkat Subramanian usage of TextMate in his presentations
