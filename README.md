@@ -28,10 +28,14 @@ Here's the default configuration:
 ```lua
 languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
-    java = { cmdline = "java %s", pattern = "Main.java" },
+    java = { cmdline = "java %s", pattern = "main.java" },
     python = { cmdline = "python %s", pattern = "main.py" },
-    rust = { cmdline = "cargo %s", pattern = "main.rs" },
-    zig = { cmdline = "zig run %s", pattern = "main.zig" },
+    -- requires Cargo.toml in the target directory or its parent.
+    rust = { cmdline = "cargo -Zscript %s", pattern = "main.rs" },
+    zig = { cmdline = "zig run -lc -lraylib %s", pattern = "main.zig" },
+    c = { cmdline = "zig run -lc %s", pattern = "main.c" },
+    js = { cmdline = "node %s", pattern = "main.js" },
+    lua = { cmdline = "luajit %s", pattern = "main.lua" },
 }
 
 ```

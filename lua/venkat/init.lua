@@ -2,12 +2,15 @@ M = {}
 
 M.config = {}
 M.config.languages = {
-    go = { cmdline = "go run %s", pattern = "main.go" },
-    java = { cmdline = "java %s", pattern = "Main.java" },
+    go = { cmdline = "go run %s", pattern = "*/demos/*.go,main.go" },
+    java = { cmdline = "java %s", pattern = "*/demos/*.java, main.java" },
+    python = { cmdline = "python %s", pattern = "*/demos/*.py,main.py" },
+    -- requires Cargo.toml in the target directory or its parent.
     rust = { cmdline = "cargo -Zscript %s", pattern = "main.rs" },
-    python = { cmdline = "python %s", pattern = "main.py" },
+    zig = { cmdline = "zig run -lc -lraylib %s", pattern = "main.zig" },
     c = { cmdline = "zig run -lc %s", pattern = "main.c" },
-    zig = { cmdline = "zig run %s", pattern = "main.zig" },
+    js = { cmdline = "node %s", pattern = "main.js" },
+    lua = { cmdline = "luajit %s", pattern = "main.lua" },
 }
 
 function M.setup(opts)
