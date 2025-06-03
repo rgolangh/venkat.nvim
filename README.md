@@ -11,14 +11,24 @@ and by TJ with his excellent autocmd tutorial.
 By default whenever saving a main.go, main.py, main.rs, main.java, nvim will compile and run, and preview 
 the result in a floating window.
 
+## Usage:
+
+Open for example /tmp/main.go, save it, <kbd>:</kbd> + <kbd>w</kbd> or hit <kbd>leader</kbd> + <kbd>rw</kbd> ("ru" for run), and enjoy a quick output in a new floating window!
+
 ## Installation
 
-using packer:
+Using packer:
 
 ```lua
-    use('rgolangh/venkat.nvim')
+    use({
+        'rgolangh/venkat.nvim',
+        config = function()
+            require("venkat").setup({})
+        end,
+    })
+
 ```
-using Lazy:
+Using Lazy:
 
 ```lua
     return {
@@ -29,6 +39,12 @@ using Lazy:
 Here's the default configuration:
 
 ```lua
+
+-- onSave will execute the buffer, according to the pattern on save (:w)
+-- set to false to completely disable this.
+onSave = true,
+-- default key mapping to execute the buffer
+mapping.execute = "<leader>ru",
 languages = {
     go = { cmdline = "go run %s", pattern = "main.go" },
     java = { cmdline = "java %s", pattern = "main.java" },

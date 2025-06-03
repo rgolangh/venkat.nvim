@@ -13,23 +13,48 @@ M.config.languages = {
     lua = { cmdline = "luajit %s", pattern = "main.lua" },
 }
 
+-- when onSave is true it executes the program in the buffer when the buffer
+-- is saved, according to the languages configuration.
+-- when set to false it is disabled, and instead set a keymap to run it, e.g:
+-- vim.keymap.set("n", "<leader>ru", function() require("venkat").execute() end)
+M.config.onSave = true
+M.config.mapping = {execute = "<leader>ru"}
+
 function M.setup(opts)
     opts = opts or {}
     if opts.default then
-        error "'default' is not a valid value for setyp . See 'defaults'"
+        error "'default' is not a valid value for setup . See 'defaults'"
     end
 
     if opts.languages ~= nil then
         M.config.languages = opts.languages
     end
 
-    vim.api.nvim_create_autocmd("BufWritePost", {
-        group = vim.api.nvim_create_augroup("venkatmode", { clear = true }),
-        pattern = require("venkat").config.getPattern(),
-        callback = function()
-            require("venkat").execute()
-        end,
-    })
+    if opts.onSave ~= nil then
+        M.config.onSave = opts.onSave
+    end
+
+    if opts.mapping ~= nil then
+        M.config.mapping.execute = opts.mapping.execute
+    end
+
+    if M.config.onSave then
+        vim.api.nvim_create_autocmd("BufWritePost", {
+            group = vim.api.nvim_create_augroup("venkatmode", { clear = true }),
+            pattern = require("venkat").config.getPattern(),
+            callback = function()
+                require("venkat").execute()
+            end,
+        })
+    end
+
+    if M.config.mapping.execute ~= nil then
+        vim.keymap.set("n",
+            M.config.mapping.execute,
+            function() require("venkat").execute() end,
+            { desc = "[R][u]n this buffer as a program"}
+        )
+    end
 end
 
 M.config.getPattern = function()
