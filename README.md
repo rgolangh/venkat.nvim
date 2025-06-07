@@ -2,18 +2,18 @@
 
 ![Screenshot](screenshot.png)
 
-*venkat.vim* is an nvim plugin to execute on-save source files and prints back the result in a pop up window.
-Release the window with <ESC>.
+*venkat.vim* is an nvim plugin to execute on-save source files and prints back the result in a floating window.
+Release the window with <kbd>ESC</kbd>.
 
 This plugin is inspired by Venkat Subramanian usage of TextMate in his presentations
 and by TJ with his excellent autocmd tutorial.
 
-By default whenever saving a main.go, main.py, main.rs, main.java, nvim will compile and run, and preview 
+By default, whenever saving a `main.go`, `main.py`, `main.rs`, `main.java`, neovim will compile and run, and preview 
 the result in a floating window.
 
 ## Usage:
 
-Open for example /tmp/main.go, save it, <kbd>:</kbd> + <kbd>w</kbd> or hit <kbd>leader</kbd> + <kbd>rw</kbd> ("ru" for run), and enjoy a quick output in a new floating window!
+Open for example `/tmp/main.go`, save it, <kbd>:w</kbd> or hit <kbd>leader</kbd> + <kbd>ru</kbd> ("ru" for run), and enjoy a quick output in a new floating window!
 
 ## Installation
 
