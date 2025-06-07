@@ -18,7 +18,7 @@ M.config.languages = {
 -- when set to false it is disabled, and instead set a keymap to run it, e.g:
 -- vim.keymap.set("n", "<leader>ru", function() require("venkat").execute() end)
 M.config.onSave = true
-M.config.mapping = {execute = "<leader>ru"}
+M.config.mapping = { execute = "<leader>ru" }
 
 function M.setup(opts)
     opts = opts or {}
@@ -46,13 +46,15 @@ function M.setup(opts)
                 require("venkat").execute()
             end,
         })
+    else
+        vim.api.nvim_clear_autocmds({ group = "venkatmode" })
     end
 
     if M.config.mapping.execute ~= nil then
         vim.keymap.set("n",
             M.config.mapping.execute,
             function() require("venkat").execute() end,
-            { desc = "[R][u]n this buffer as a program"}
+            { desc = "[R][u]n this buffer as a program" }
         )
     end
 end
